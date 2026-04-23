@@ -51,4 +51,19 @@ select *
 from layoffs_staging
 ;
 
+-- Standardizing data
+--triming company names(removing accidental spaces).
+select company,TRIM(company)
+from layoffs_staging
+;
 
+UPDATE layoffs_staging
+SET company = TRIM(company);
+
+
+select company,TRIM(company)
+from layoffs_staging
+;
+
+UPDATE layoffs_staging
+SET company = TRIM(company);
