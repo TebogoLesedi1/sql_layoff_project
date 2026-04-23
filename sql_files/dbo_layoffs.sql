@@ -1,0 +1,1 @@
+CREATE DATABASE raw_layoff_data;
