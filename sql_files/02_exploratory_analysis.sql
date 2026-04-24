@@ -62,4 +62,29 @@ GROUP BY SUBSTRING(CONVERT(VARCHAR, layoff_date, 120), 1, 7)
 ORDER BY 1 ASC;
 
 
+-- RANKING ANALYSIS: Top 5 Companies per Year
+-- Purpose: To identify which companies had the largest layoffs each year.
+-- Technical Note: Using a double CTE (Common Table Expression) and DENSE_RANK() 
+-- to filter the top 5 rankings per yearly partition.
+WITH Company_Year AS 
+(
+  SELECT 
+    company, 
+    YEAR(layoff_date) AS [years], 
+    SUM(total_laid_off) AS total_off
+  FROM layoffs_staging
+  GROUP BY company, YEAR(layoff_date)
+), 
+Company_Year_Rank AS
+(
+  SELECT *, 
+  DENSE_RANK() OVER (PARTITION BY [years] ORDER BY total_off DESC) AS Ranking
+  FROM Company_Year
+  WHERE [years] IS NOT NULL
+)
+SELECT *
+FROM Company_Year_Rank
+WHERE Ranking <= 5
+ORDER BY [years] ASC, total_off DESC;
+
 
