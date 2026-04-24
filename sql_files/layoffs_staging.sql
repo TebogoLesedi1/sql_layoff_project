@@ -132,3 +132,16 @@ from layoffs_staging
 where company = 'Airbnb'
 ;
 
+--removing columns and 
+
+DELETE
+from layoffs_staging
+where total_laid_off IS NULL
+AND percentage_laid_off IS NULL
+;
+
+--check if they got deleted
+select *
+from layoffs_staging
+;
+
