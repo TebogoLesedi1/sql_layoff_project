@@ -37,7 +37,7 @@ WITH duplicates_cte AS
 (
 select *, 
 ROW_NUMBER() OVER(
-PARTITION BY company,'location', industry, total_laid_off, percentage_laid_off, 'date',
+PARTITION BY company,location, industry, total_laid_off, percentage_laid_off, layoff_date,
 stage, country, funds_raised_millions
 ORDER BY company) AS row_num
 from layoffs_staging
@@ -81,7 +81,54 @@ SET country = TRIM(TRAILING '.' FROM country)
 WHERE country LIKE 'United States%'
 ;
 
+--looking for nulls
 select *
 from layoffs_staging
+where total_laid_off IS NULL
+AND percentage_laid_off IS NULL
+;
+
+
+select *
+from layoffs_staging
+where industry IS NULL
+OR industry = ''
+;
+
+select *
+from layoffs_staging
+where company = 'Airbnb'
+;
+--using self joins to fill in missing values based on matching data
+
+select *
+from layoffs_staging t1
+JOIN layoffs_staging t2
+ON t1.company = t2.company
+AND t1.location = t2.location
+WHERE (t1.industry IS NULL OR t1.industry = '')
+AND t2.industry IS NOT NULL
+
+UPDATE  t1
+SET t1.industry = t2.industry
+from layoffs_staging t1
+JOIN layoffs_staging t2
+ON t1.company = t2.company
+AND t1.location = t2.location
+WHERE (t1.industry IS NULL OR t1.industry = '')
+AND t2.industry IS NOT NULL;
+
+--checking if there is still missing values
+select t1.company, t1.location, t1.industry, t2.industry
+from layoffs_staging t1
+JOIN layoffs_staging t2
+ON t1.company = t2.company
+AND t1.location = t2.location
+WHERE (t1.industry IS NULL OR t1.industry = '')
+AND t2.industry IS NOT NULL
+
+select *
+from layoffs_staging
+where company = 'Airbnb'
 ;
 
