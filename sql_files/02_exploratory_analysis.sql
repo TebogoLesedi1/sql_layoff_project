@@ -50,3 +50,16 @@ FROM [raw_layoff_data].[dbo].[layoffs_staging]
 GROUP BY stage
 ORDER BY 2 Desc;
 
+-- Calculating the rolling total of layoffs per month to visualize the cumulative impact over time
+-- Using a Window Function (SUM OVER) to create a running sum based on the chronological month
+SELECT 
+    SUBSTRING(CONVERT(VARCHAR, layoff_date, 120), 1, 7) AS [Month], 
+    SUM(total_laid_off) AS monthly_total,
+    SUM(SUM(total_laid_off)) OVER(ORDER BY SUBSTRING(CONVERT(VARCHAR, layoff_date, 120), 1, 7)) AS rolling_total
+FROM layoffs_staging
+WHERE layoff_date IS NOT NULL
+GROUP BY SUBSTRING(CONVERT(VARCHAR, layoff_date, 120), 1, 7)
+ORDER BY 1 ASC;
+
+
+
