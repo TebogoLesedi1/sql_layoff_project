@@ -1,4 +1,4 @@
-📊 Global Tech Layoffs: End-to-End Data Pipeline
+📊 Global Layoffs: End-to-End Data Pipeline
 
 
 🚀 Project Overview
