@@ -76,7 +76,7 @@ Geographic distribution of layoffs
 (Insert your dashboard image below)
 Markdown
 
-![Industry Analysis](images/industry_analysis.png)
+![Industry Analysis]([images/industry_analysis.png](https://github.com/TebogoLesedi1/sql_layoff_project/blob/main/images/deep_dive.png?raw=true))
 
 Sector Analysis:
 Top industries affected: Retail, Consumer, Transportation
