@@ -59,7 +59,7 @@ Visualization: DAX measures created to calculate dynamic KPIs and enable interac
 
 (Insert your dashboard image below)
 Markdown
-![Executive Summary](images/executive_summary.png)
+![Executive Summary]([images/executive_summary.png](https://github.com/TebogoLesedi1/sql_layoff_project/blob/main/images/overview.png?raw=true))
 
 KPIs:
 Total Layoffs: 383K
