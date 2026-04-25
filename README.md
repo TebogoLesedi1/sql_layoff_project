@@ -57,8 +57,7 @@ Visualization: DAX measures created to calculate dynamic KPIs and enable interac
 
 🔹 Executive Summary (Page 1)
 
-(Insert your dashboard image below)
-Markdown
+
 ![Executive Summary]([images/executive_summary.png](https://github.com/TebogoLesedi1/sql_layoff_project/blob/main/images/overview.png?raw=true))
 
 KPIs:
@@ -73,8 +72,6 @@ Geographic distribution of layoffs
 
 🔹 Industry & Funding Deep Dive (Page 2)
 
-(Insert your dashboard image below)
-Markdown
 
 ![Industry Analysis]([images/industry_analysis.png](https://github.com/TebogoLesedi1/sql_layoff_project/blob/main/images/deep_dive.png?raw=true))
 
